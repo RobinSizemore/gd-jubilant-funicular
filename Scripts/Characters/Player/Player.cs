@@ -31,7 +31,7 @@ public partial class Player : CharacterBody3D
 
     public override void _Input(InputEvent @event)
     {
-        direction = Input.GetVector(GameConstants.MOVE_LEFT, GameConstants.MOVE_RIGHT, GameConstants.MOVE_FORWARD, GameConstants.MOVE_BACKWARD);
+        direction = Input.GetVector(GameConstants.INPUT_MOVE_LEFT, GameConstants.INPUT_MOVE_RIGHT, GameConstants.INPUT_MOVE_FORWARD, GameConstants.INPUT_MOVE_BACKWARD);
         if (direction == Vector2.Zero)
         {
             animPlayerNode.Play(GameConstants.ANIM_IDLE);
