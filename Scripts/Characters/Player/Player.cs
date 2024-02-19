@@ -25,6 +25,7 @@ public partial class Player : CharacterBody3D
     public override void _PhysicsProcess(double delta)
     {
         Velocity = new Vector3(direction.X, 0, direction.Y).Normalized() * Speed;
+        Flip();
 
         MoveAndSlide();
     }
@@ -41,5 +42,14 @@ public partial class Player : CharacterBody3D
             animPlayerNode.Play(GameConstants.ANIM_MOVE);
         }
         // base._Input(@event);
+    }
+
+    private void Flip()
+    {
+        bool isNotMovingHorizontally = Velocity.X == 0;
+        if (isNotMovingHorizontally) return;
+
+        bool isMovingLeft = Velocity.X < 0;
+        sprite3DNode.FlipH = isMovingLeft;
     }
 }
