@@ -7,10 +7,12 @@ public partial class PlayerMoveState : Node
     public override void _Ready()
     {
         player = GetOwner<Player>();
+        SetPhysicsProcess(false);
     }
 
     public override void _PhysicsProcess(double delta)
     {
+
         if (player.direction == Vector2.Zero)
         {
             player.stateMachineNode.SwitchState<PlayerIdleState>();
@@ -19,11 +21,16 @@ public partial class PlayerMoveState : Node
 
     public override void _Notification(int what)
     {
+
         base._Notification(what);
         if (what == 5001)
         {
-            Player characterNode = GetOwner<Player>();
-            characterNode.animPlayerNode.Play(GameConstants.ANIM_MOVE);
+            player.animPlayerNode.Play(GameConstants.ANIM_MOVE);
+            SetPhysicsProcess(true);
+        }
+        else if (what == 5002)
+        {
+            SetPhysicsProcess(false);
         }
     }
 }
