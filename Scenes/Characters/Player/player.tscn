@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://d5gcyhywpocb"]
+[gd_scene load_steps=38 format=3 uid="uid://d5gcyhywpocb"]
 
 [ext_resource type="Texture2D" uid="uid://ffjehmb7o7c8" path="res://Assets/Sprites/Characters/Player/Running/Running_002.png" id="1_0436q"]
 [ext_resource type="Script" path="res://Scripts/Characters/Player/Player.cs" id="1_yeylr"]
@@ -33,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://dg6r1a1y1ctmh" path="res://Assets/Sprites/Characters/Player/Running/Running_011.png" id="30_gbhnu"]
 [ext_resource type="Script" path="res://Scripts/Characters/Player/PlayerIdleState.cs" id="32_o80vr"]
 [ext_resource type="Script" path="res://Scripts/Characters/Player/PlayerMoveState.cs" id="33_yl5wx"]
+[ext_resource type="Script" path="res://Scripts/Characters/StateMachine.cs" id="34_isf2k"]
 
 [sub_resource type="Animation" id="Animation_yers6"]
 resource_name = "Idle"
@@ -74,10 +75,11 @@ _data = {
 "Move": SubResource("Animation_so6he")
 }
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("animPlayerNode", "sprite3DNode")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("animPlayerNode", "sprite3DNode", "stateMachineNode")]
 script = ExtResource("1_yeylr")
 animPlayerNode = NodePath("AnimationPlayer")
 sprite3DNode = NodePath("Sprite3D")
+stateMachineNode = NodePath("StateMachine")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 texture_filter = 0
@@ -93,3 +95,8 @@ script = ExtResource("32_o80vr")
 
 [node name="MoveState" type="Node" parent="."]
 script = ExtResource("33_yl5wx")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("currentState", "states")]
+script = ExtResource("34_isf2k")
+currentState = NodePath("../IdleState")
+states = [NodePath("../IdleState"), NodePath("../MoveState")]
