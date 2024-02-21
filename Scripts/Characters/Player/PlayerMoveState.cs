@@ -41,7 +41,6 @@ public partial class PlayerMoveState : Node
     {
         if (Input.IsActionJustPressed(GameConstants.INPUT_DASH))
         {
-            GD.Print("Dash");
             player.stateMachineNode.SwitchState<PlayerDashState>();
         }
     }

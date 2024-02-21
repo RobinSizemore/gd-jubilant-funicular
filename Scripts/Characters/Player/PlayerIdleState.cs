@@ -43,7 +43,6 @@ public partial class PlayerIdleState : Node
     {
         if (Input.IsActionJustPressed(GameConstants.INPUT_DASH))
         {
-            GD.Print("Dash");
             characterNode.stateMachineNode.SwitchState<PlayerDashState>();
         }
     }
