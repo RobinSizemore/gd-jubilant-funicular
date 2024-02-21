@@ -8,6 +8,7 @@ public partial class PlayerMoveState : Node
     {
         player = GetOwner<Player>();
         SetPhysicsProcess(false);
+        SetProcessInput(true);
     }
 
     public override void _PhysicsProcess(double delta)
@@ -23,14 +24,25 @@ public partial class PlayerMoveState : Node
     {
 
         base._Notification(what);
-        if (what == 5001)
+        if (what == GameConstants.NODE_ACTIVATE)
         {
             player.animPlayerNode.Play(GameConstants.ANIM_MOVE);
             SetPhysicsProcess(true);
+            SetProcessInput(true);
         }
-        else if (what == 5002)
+        else if (what == GameConstants.NODE_DEACTIVATE)
         {
             SetPhysicsProcess(false);
+            SetProcessInput(false);
+        }
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        if (Input.IsActionJustPressed(GameConstants.INPUT_DASH))
+        {
+            GD.Print("Dash");
+            player.stateMachineNode.SwitchState<PlayerDashState>();
         }
     }
 }

@@ -15,7 +15,7 @@ public partial class PlayerDashState : Node
 
         if (player.direction == Vector2.Zero)
         {
-            player.stateMachineNode.SwitchState<PlayerIdleState>();
+            player.stateMachineNode.SwitchState<PlayerDashState>();
         }
     }
 

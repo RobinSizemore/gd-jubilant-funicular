@@ -16,6 +16,8 @@ public class GameConstants
     public const string INPUT_MOVE_FORWARD = "MoveForward";
     public const string INPUT_MOVE_BACKWARD = "MoveBackward";
 
+    public const string INPUT_DASH = "Dash";
+
     public const int NODE_DEACTIVATE = 5002;
     public const int NODE_ACTIVATE = 5001;
     public const int NODE_READY = 5000;
