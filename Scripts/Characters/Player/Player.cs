@@ -18,13 +18,7 @@ public partial class Player : CharacterBody3D
 
 
     public Vector2 direction = new Vector2();
-    public override void _PhysicsProcess(double delta)
-    {
-        Velocity = new Vector3(direction.X, 0, direction.Y).Normalized() * Speed;
-        Flip();
 
-        MoveAndSlide();
-    }
 
     public override void _Input(InputEvent @event)
     {
@@ -33,7 +27,7 @@ public partial class Player : CharacterBody3D
 
     }
 
-    private void Flip()
+    public void Flip()
     {
         bool isNotMovingHorizontally = Velocity.X == 0;
         if (isNotMovingHorizontally) return;

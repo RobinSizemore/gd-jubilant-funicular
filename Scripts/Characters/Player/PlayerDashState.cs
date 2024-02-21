@@ -3,19 +3,21 @@ using System;
 
 public partial class PlayerDashState : Node
 {
-    Player player;
+    Player characterNode;
+    [Export] Timer dashTimerNode;
     public override void _Ready()
     {
-        player = GetOwner<Player>();
+        characterNode = GetOwner<Player>();
         SetPhysicsProcess(false);
+        dashTimerNode.Timeout += HandleDashTimeout;
     }
 
     public override void _PhysicsProcess(double delta)
     {
 
-        if (player.direction == Vector2.Zero)
+        if (characterNode.direction == Vector2.Zero)
         {
-            player.stateMachineNode.SwitchState<PlayerDashState>();
+            characterNode.stateMachineNode.SwitchState<PlayerDashState>();
         }
     }
 
@@ -25,13 +27,19 @@ public partial class PlayerDashState : Node
         base._Notification(what);
         if (what == GameConstants.NODE_ACTIVATE)
         {
-            player.animPlayerNode.Play(GameConstants.ANIM_DASH);
+            characterNode.animPlayerNode.Play(GameConstants.ANIM_DASH);
             SetPhysicsProcess(true);
+            dashTimerNode.Start();
         }
         else if (what == GameConstants.NODE_DEACTIVATE)
         {
             SetPhysicsProcess(false);
         }
 
+    }
+
+    private void HandleDashTimeout()
+    {
+        characterNode.stateMachineNode.SwitchState<PlayerIdleState>();
     }
 }
