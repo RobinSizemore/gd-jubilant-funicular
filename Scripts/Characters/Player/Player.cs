@@ -30,6 +30,7 @@ public partial class Player : CharacterBody3D
     {
         direction = Input.GetVector(GameConstants.INPUT_MOVE_LEFT, GameConstants.INPUT_MOVE_RIGHT, GameConstants.INPUT_MOVE_FORWARD, GameConstants.INPUT_MOVE_BACKWARD);
 
+
     }
 
     private void Flip()
