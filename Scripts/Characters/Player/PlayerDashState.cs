@@ -1,50 +1,44 @@
 using Godot;
 using System;
 
-public partial class PlayerDashState : Node
+public partial class PlayerDashState : PlayerState
 {
-    private Player characterNode;
     [Export] private Timer dashTimerNode;
     [Export] private float dashSpeed = 10.0f;
 
-
     public override void _Ready()
     {
-        characterNode = GetOwner<Player>();
+        base._Ready();
         dashTimerNode.Timeout += HandleDashTimeout;
-        SetPhysicsProcess(false);
+    }
+
+    protected override void EnterState()
+    {
+        // GD.Print("PlayerDashState");
+        player.animPlayerNode.Play(GameConstants.ANIM_DASH);
+        player.Velocity = new(player.direction.X, 0, player.direction.Y);
+        if (player.Velocity == Vector3.Zero)
+        {
+            player.Velocity = (player.sprite3DNode.FlipH ? Vector3.Left : Vector3.Right);
+        }
+        player.Velocity *= dashSpeed;
+        dashTimerNode.Start();
     }
 
     public override void _PhysicsProcess(double delta)
     {
 
-        characterNode.MoveAndSlide();
-        characterNode.Flip();
+        player.MoveAndSlide();
+        player.Flip();
 
 
-    }
-
-    public override void _Notification(int what)
-    {
-        base._Notification(what);
-
-        if (what == 5001)
-        {
-            SetPhysicsProcess(true);
-            characterNode.animPlayerNode.Play(GameConstants.ANIM_DASH);
-            characterNode.Velocity = new Vector3(characterNode.direction.X, 0, characterNode.direction.Y).Normalized() * dashSpeed;
-            if (characterNode.Velocity == Vector3.Zero)
-            {
-                characterNode.Velocity = (characterNode.sprite3DNode.FlipH ? Vector3.Left : Vector3.Right) * dashSpeed;
-            }
-            dashTimerNode.Start();
-        }
     }
 
     private void HandleDashTimeout()
     {
         SetPhysicsProcess(false);
-        characterNode.Velocity = Vector3.Zero;
-        characterNode.stateMachineNode.SwitchState<PlayerIdleState>();
+        player.Velocity = Vector3.Zero;
+        // GD.Print("Switching to Idle...");
+        player.stateMachineNode.SwitchState<PlayerIdleState>();
     }
 }

@@ -17,9 +17,11 @@ public partial class StateMachine : Node
         {
             if (state is T)
             {
-                currentState.Notification(5002);
+                // GD.Print("Canceling Current State of " + currentState.Name);
+                currentState.Notification(GameConstants.NODE_DEACTIVATE);
                 currentState = state;
-                currentState.Notification(5001);
+                // GD.Print("Activating New State of " + currentState.Name);
+                currentState.Notification(GameConstants.NODE_ACTIVATE);
                 return;
             }
         }
