@@ -10,7 +10,7 @@ public partial class PlayerMoveState : PlayerState
         if (player.direction == Vector2.Zero)
         {
             // GD.Print("Switching to Idle...");
-            player.stateMachineNode.SwitchState<PlayerIdleState>();
+            player.StateMachineNode.SwitchState<PlayerIdleState>();
             return;
         }
 
@@ -25,13 +25,13 @@ public partial class PlayerMoveState : PlayerState
         if (Input.IsActionJustPressed(GameConstants.INPUT_DASH))
         {
             // GD.Print("Switching to Dash...");
-            player.stateMachineNode.SwitchState<PlayerDashState>();
+            player.StateMachineNode.SwitchState<PlayerDashState>();
         }
     }
 
     protected override void EnterState()
     {
         // GD.Print("PlayerMoveState");
-        player.animPlayerNode.Play(GameConstants.ANIM_MOVE);
+        player.AnimPlayerNode.Play(GameConstants.ANIM_MOVE);
     }
 }

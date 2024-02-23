@@ -6,11 +6,11 @@ public partial class Player : CharacterBody3D
 {
 
     [ExportGroup("Required Nodes")]
-    [Export] public AnimationPlayer animPlayerNode;
-    [Export] public Sprite3D sprite3DNode;
-    [Export] public StateMachine stateMachineNode;
+    [Export] public AnimationPlayer AnimPlayerNode { get; private set; }
+    [Export] public Sprite3D Sprite3DNode { get; private set; }
+    [Export] public StateMachine StateMachineNode { get; private set; }
 
-    public float Speed = 5.0f;
+    [Export(PropertyHint.Range, "0,10")] public float Speed = 5.0f;
 
     public override void _Ready()
     {
@@ -33,6 +33,6 @@ public partial class Player : CharacterBody3D
         if (isNotMovingHorizontally) return;
 
         bool isMovingLeft = Velocity.X < 0;
-        sprite3DNode.FlipH = isMovingLeft;
+        Sprite3DNode.FlipH = isMovingLeft;
     }
 }
