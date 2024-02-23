@@ -1,3 +1,31 @@
-[gd_scene format=3 uid="uid://dbx1lx2vtp50b"]
+[gd_scene load_steps=8 format=3 uid="uid://dbx1lx2vtp50b"]
+
+[ext_resource type="PackedScene" uid="uid://b1x51r35xmyb0" path="res://Assets/Models/Dungeon/gltf/floor_tile_small.gltf.glb" id="1_0exc3"]
+[ext_resource type="PackedScene" uid="uid://bfsytoyev6jux" path="res://Assets/Models/Dungeon/gltf/wall.gltf.glb" id="2_kay0f"]
+[ext_resource type="PackedScene" uid="uid://v7ameskic2dg" path="res://Assets/Models/Dungeon/gltf/stairs_wood_decorated.gltf.glb" id="3_ddcrf"]
+[ext_resource type="PackedScene" uid="uid://q36pvwjt1r6o" path="res://Assets/Models/Dungeon/gltf/wall_corner.gltf.glb" id="4_2bkeh"]
+[ext_resource type="PackedScene" uid="uid://calotl3wf88gi" path="res://Assets/Models/Dungeon/gltf/wall_Tsplit.gltf.glb" id="5_dbtcd"]
+[ext_resource type="PackedScene" uid="uid://b854kfxgt5a52" path="res://Assets/Models/Dungeon/gltf/wall_open_scaffold.gltf.glb" id="6_dn5ev"]
+[ext_resource type="PackedScene" uid="uid://dy1rk6eyprgws" path="res://Assets/Models/Dungeon/gltf/wall_doorway_scaffold.glb" id="7_h5j1g"]
 
 [node name="Tiles" type="Node3D"]
+
+[node name="floor_tile_small_gltf" parent="." instance=ExtResource("1_0exc3")]
+
+[node name="wall_gltf" parent="." instance=ExtResource("2_kay0f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.93279, 0, -0.323307)
+
+[node name="stairs_wood_decorated_gltf" parent="." instance=ExtResource("3_ddcrf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.73791, 0, 0)
+
+[node name="wall_corner_gltf" parent="." instance=ExtResource("4_2bkeh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.4005, 0, 0)
+
+[node name="wall_Tsplit_gltf" parent="." instance=ExtResource("5_dbtcd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3916, 0, 0)
+
+[node name="wall_open_scaffold_gltf" parent="." instance=ExtResource("6_dn5ev")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.1826, 0, 0)
+
+[node name="wall_doorway_scaffold2" parent="." instance=ExtResource("7_h5j1g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9205, 0, 0)
